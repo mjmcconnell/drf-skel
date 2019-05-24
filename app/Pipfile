@@ -6,6 +6,11 @@ verify_ssl = true
 [dev-packages]
 black = "*"
 isort = "*"
+pytest-django = "*"
+pytest-cov = "*"
+pytest-flakes = "*"
+pytest-pep8 = "*"
+pytest-mccabe = "*"
 
 [packages]
 djangorestframework = "==3.9.4"

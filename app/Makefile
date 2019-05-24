@@ -1,24 +1,30 @@
+PY_ENV = pipenv run
+
+
 .PHONY: install
 install:
 	pipenv install --system --dev --pre
 
 .PHONY: lint
 lint: install
-	isort -rc .
-	black .
+	$(PY_ENV) isort -rc .
+	$(PY_ENV) black .
 
 .PHONY: run
 run: install
-	python manage.py runserver 0.0.0.0:8080
+	$(PY_ENV) python manage.py runserver 0.0.0.0:8080
 
 .PHONY: migrations
 migrations:
-	python manage.py makemigrations
+	$(PY_ENV) python manage.py makemigrations
 
 .PHONY: migrate
 migrate:
-	python manage.py migrate
+	$(PY_ENV) python manage.py migrate
 
 .PHONY: createadmin
 createadmin:
-	python manage.py createsuperuser --email admin@example.com --username admin
+	$(PY_ENV) python manage.py createsuperuser --email admin@example.com --username admin
+
+test:
+	$(PY_ENV) pipenv run pytest --flakes --mccabe --pep8 --cov=.
