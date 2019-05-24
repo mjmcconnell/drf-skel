@@ -8,9 +8,7 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - ./app:/opt/app
-      - ./Pipfile:/opt/Pipfile
-      - ./Pipfile.lock:/opt/Pipfile.lock
+      - ./app:/opt
     links:
       - psql
     depends_on:
@@ -21,7 +19,6 @@ services:
       DATABASE_NAME: local_pg
       DATABASE_USER: local_pg
       DATABASE_PASSWORD: local_pg
-      PIPENV_PIPFILE: /opt/Pipfile
     command: make run
 
   psql:

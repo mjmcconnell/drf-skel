@@ -1,5 +1,5 @@
 install:
-	pipenv install --dev
+	pipenv install --system --dev --pre
 
 run: install
 	python manage.py runserver 0.0.0.0:8080

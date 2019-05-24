@@ -3,12 +3,12 @@ MAINTAINER Mark McConnell <mjmccconnell.dev@gmail.com>
 
 RUN apt update && apt install -y
 
-COPY Pipfile /opt/Pipfile
-COPY Pipfile.lock /opt/Pipfile.lock
+COPY app/Pipfile /opt/Pipfile
+COPY app/Pipfile.lock /opt/Pipfile.lock
 
 WORKDIR /opt
-RUN pip3 install pipenv
-RUN pipenv install --system
 
-COPY app /opt/app
-WORKDIR /opt/app
+RUN pip3 install pipenv
+RUN pipenv install --system --dev --pre
+
+COPY app /opt
