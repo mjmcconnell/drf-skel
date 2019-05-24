@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 black = "*"
+isort = "*"
 
 [packages]
 djangorestframework = "==3.9.4"
