@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.django
+    ports:
+      - 8080:8080
+    volumes:
+      - ./app:/opt/app
+      - ./Pipfile:/opt/Pipfile
+      - ./Pipfile.lock:/opt/Pipfile.lock
+    links:
+      - psql
+    depends_on:
+      - psql
+    environment:
+      DATABASE_ENGINE: postgresql_psycopg2
+      DATABASE_HOST: psql
+      DATABASE_NAME: local_pg
+      DATABASE_USER: local_pg
+      DATABASE_PASSWORD: local_pg
+      PIPENV_PIPFILE: /opt/Pipfile
+    command: make run
+
+  psql:
+    image: "postgres:11.2"
+    restart: always
+    environment:
+      POSTGRES_USER: local_pg
+      POSTGRES_PASSWORD: local_pg
+      POSTGRES_DB: local_pg
+    ports:
+      - 0.0.0.0:5432:5432
