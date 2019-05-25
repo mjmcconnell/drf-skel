@@ -1,14 +1,36 @@
-## Installed packeds
+# Django Rest Framework skeleton app
 
-### Python
+This project is setup to introduce some basic principles for setting up a web API project using the Django and Django Rest Framework frameworks.
 
-#### Gloabl
+## Getting started
 
+This project has been setup to include [Docker](https://docs.docker.com/install/#server) and [docker-compose](https://docs.docker.com/compose/install/) to help with local development, along with a `Makefile` to wrap the docker commands up into easy to remember commands.
+
+Once you have docker-compose setup and running locally, simply run `make run` from your terminal.
+This will spin up a Django web server running on port `8080`, along with a PostgreSQL database on port `5432`.
+
+For reference there is a single app running under the `app/apps` directory "foo" that you can visit. From your browser navigate to [http://localhost:8080/foo](http://localhost:8080/foo).
+
+### Create local user
+
+When you initially start the app, the database will be empty, including the users table.
+To create an admin account, with the app running, open a new terminal window and run:
+
+    make django-attach
+
+**Note if you have changed the name of the repo in your local environment, you will need to update `DJANGO_CONTAINER` variable in the `Makefile` at the root of the project to reflect the projects name**
+
+This is create a session within the running django container. Then to add a user simple run:
+
+    make createadmin
+
+## Installed packeages
+
+### Gloabl
 [pipenv](https://docs.pipenv.org/en/latest/)
 Manages python packages in virutal environments (similar to virtualenv).
 This project installs all pipenv packages on the system level, negating the need for virtualisation (as docker handles that for us),
 but pipenv provides a more robust package management system that pip.
-
 
 [Django](https://docs.djangoproject.com)
 Rapid development framework
@@ -28,12 +50,11 @@ Auto formatting of all python files
 [isort](https://readthedocs.org/projects/isort/)
 Manages python import path ordering
 
-#### Development
+### Development
 [Markdown](https://python-markdown.github.io/)
 For browserable API
 
-#### Testing
-
+### Testing
 [pytest](https://docs.pytest.org/en/latest/)
 Testing framework
 There are also a number of plugins for the pytest tool used:

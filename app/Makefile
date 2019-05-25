@@ -24,7 +24,7 @@ migrate:
 
 .PHONY: createadmin
 createadmin:
-	$(PY_ENV) python manage.py createsuperuser --email admin@example.com --username admin
+	$(PY_ENV) python manage.py createsuperuser
 
 test:
 	$(PY_ENV) pipenv run pytest --flakes --mccabe --pep8 --cov=.
