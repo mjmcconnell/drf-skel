@@ -6,7 +6,10 @@ This project is setup to introduce some basic principles for setting up a web AP
 
 This project has been setup to include [Docker](https://docs.docker.com/install/#server) and [docker-compose](https://docs.docker.com/compose/install/) to help with local development, along with a `Makefile` to wrap the docker commands up into easy to remember commands.
 
-Once you have docker-compose setup and running locally, simply run `make run` from your terminal.
+Once you have docker-compose setup and running locally, from your terminal simply run
+
+    make run
+
 This will spin up a Django web server running on port `8080`, along with a PostgreSQL database on port `5432`.
 
 For reference there is a single app running under the `app/apps` directory "foo" that you can visit. From your browser navigate to [http://localhost:8080/foo](http://localhost:8080/foo).
