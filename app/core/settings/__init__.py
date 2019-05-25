@@ -21,13 +21,21 @@ sys.path.insert(0, os.path.join(os.path.dirname(BASE_DIR), "apps"))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "jm+!n*0o70467)aws07uy^8i&g#8u6&%r(lix8)y!t4e=a&0_v"
+SECRET_KEY = "super_secret_key"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
+DATA_UPLOAD_MAX_MEMORY_SIZE = 2621440
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 100
+FILE_UPLOAD_MAX_MEMORY_SIZE = 2621440
 
 # Application definition
 
@@ -122,3 +130,29 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = "/static/"
+
+# Logging
+# https://docs.djangoproject.com/en/2.2/topics/logging/
+LOGGING_LEVEL = os.getenv("DJANGO_LOG_LEVEL", "DEBUG")
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'json': {
+            '()': 'json_logging.JSONLogFormatter'
+        }
+    },
+    'handlers': {
+        'json': {
+            'level': os.getenv("DJANGO_LOG_LEVEL", "DEBUG"),
+            'class': 'logging.StreamHandler',
+            'formatter': 'json',
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['json'],
+            'propagate': True,
+        }
+    }
+}
