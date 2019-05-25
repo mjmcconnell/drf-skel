@@ -6,9 +6,16 @@ RUN apt update && apt install -y
 COPY app/Pipfile /opt/Pipfile
 COPY app/Pipfile.lock /opt/Pipfile.lock
 
+COPY docker/conf/gunicorn.service /etc/systemd/system/gunicorn.service
+COPY docker/conf/gunicorn.socket /etc/systemd/system/gunicorn.socket
+COPY docker/conf/gunicorn.conf /etc/tmpfiles.d/gunicorn.conf
+
 WORKDIR /opt
 
 RUN pip3 install pipenv
 RUN pipenv install --system --dev --pre
 
 COPY app /opt
+
+RUN systemctl enable gunicorn.socket
+RUN systemctl enable nginx.service
