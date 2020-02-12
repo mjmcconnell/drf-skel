@@ -18,7 +18,7 @@ djangorestframework = "==3.9.4"
 psycopg2 = "==2.8.2"
 pytz = "==2019.1"
 sqlparse = "==0.3.0"
-Django = "==2.2.1"
+Django = "==2.2.10"
 json-logging = "*"
 gunicorn = "*"
 
