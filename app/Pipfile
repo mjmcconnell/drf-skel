@@ -14,7 +14,7 @@ pytest-mccabe = "*"
 Markdown = "==3.1.1"
 
 [packages]
-djangorestframework = "==3.9.4"
+djangorestframework = "==3.11.2"
 psycopg2 = "==2.8.2"
 pytz = "==2019.1"
 sqlparse = "==0.3.0"
